@@ -7,22 +7,18 @@ function fillTiles(n){
     let container = document.getElementById("con");
     container.replaceChildren("");
     let x= window.matchMedia("(min-device-width: 480px) and (max-height: 850px) and  (orientation: landscape) ");
-    x.onchange=()=>{
-        if( window.matchMedia("(min-device-width: 480px) and (max-height: 850px) and  (orientation: landscape) ").matches){
+    let tryme = window.innerWidth;
+ 
+        if( tryme==850){
             container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},150px)`;
         }
-        if( window.matchMedia("only screen and (max-height: 850px) and  (orientation: potrait) ").matches){
-        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},150px)`
-        }
-    }
+        // if( window.matchMedia("only screen and (max-height: 850px) and  (orientation: potrait) ").matches){
+        // container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},150px)`
+        // }
+    
     
   
-    if( window.matchMedia("(min-device-width: 480px) and (max-height: 850px) and  (orientation: landscape) ").matches){
-            container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},150px)`;
-        }
-        if( window.matchMedia("only screen and (max-height: 850px) and  (orientation: potrait) ").matches){
-            container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},150px)`
-            }
+    
     for(let index=0;index<n;index++){
 
         let parent = document.createElement("div");
