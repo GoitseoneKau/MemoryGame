@@ -1,10 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@font-face {
+    font-family: Caprasimo;
+    src: url('fonts/Caprasimo/Caprasimo-Regular.ttf') format('ttf')
+}
+
 body{
-    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  
+    background-color: cornsilk;
+}
+
+.boss{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: cornsilk;
+}
+
+.input-form{
+    padding: 5px;
+    width: 100%;
+    font:100 20px 'Caprasimo',serif;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-form>label{
+    padding: 5px;
+}
+
+input[type=number] {
+    padding: 5px;
+    text-align: center;
+}
+button[type=button] {
+    padding: 5px;
+    text-align: center;
+    width: 100px;
 }
 
 .block{
@@ -15,27 +49,16 @@ body{
     align-items: center;
     justify-content: center;
     border: 1px solid black;
-    
 }
 
 .container{
-
-    height: 100%;
     padding: 10px;
     display: grid;
     gap: 10px;
     grid-template-columns:repeat(4,250px) ;
+    margin-left: 10px;
     background-color: chocolate;
 }
-
-#tile1{background-color: #ff7799;}
-#tile2{background-color: bisque;}
-#tile3{background-color: red;}
-#tile4{background-color: rosybrown;}
-#tile5{background-color: plum;}
-#tile6{background-color: peru;}
-#tile7{background-color:cornflowerblue}
-#tile8{background-color:tomato}
 
 .front{
     width: 250px;
@@ -57,11 +80,70 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    font:100 20px 'Caprasimo',serif;
     rotate: y 180deg;
+}
+
+.title{
+    font:400 18px 'Caprasimo';
+    text-align: center;
+    width: 100%;
+    height: fit-content;
 }
 
 .flip{
     rotate: y 180deg;
     transform-style: preserve-3d;
     transition: rotate 4;
+}
+
+
+@media only screen and (max-height: 1280px) {
+    .container{
+        padding: 10px;
+        display: grid;
+        gap: 10px;
+        grid-template-columns:repeat(4,150px) ;
+        background-color: rgb(18, 117, 124);
+    }
+
+    .front,.behind,.block{
+        width: 150px;
+        height: 50px;
+    }
+
+    .behind{
+        font:100 15px 'Caprasimo',serif;
+    }
+
+    .title{
+        font:400 10px 'Caprasimo';
+        text-align: center;
+    }
+
+}
+
+
+@media(min-device-width: 480px) and (max-device-height: 850px) and  (orientation: landscape) {
+    .container{
+        padding: 10px;
+        display: grid;
+        gap: 10px;
+        grid-template-columns:repeat(4,100px) ;
+        background-color: rgb(18, 117, 124);
+    }
+
+    .front,.behind,.block{
+        width: 100px;
+        height: 50px;
+    }
+
+    .behind{
+        font:100 15px 'Caprasimo',serif;
+    }
+
+    .title{
+        font:400 10px 'Caprasimo';
+        text-align: center;
+    }
 }

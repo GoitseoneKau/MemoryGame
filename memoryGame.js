@@ -1,3 +1,50 @@
+const levelOne = 4;
+const levelTwo = 6;
+const levelThree = 8;
+const levelFour = 12;
+
+function fillTiles(n){
+    let container = document.getElementById("con");
+    container.replaceChildren("");
+    let x= window.matchMedia("(min-device-width: 480px) and (max-height: 850px) and  (orientation: landscape) ");
+    x.onchange=()=>{
+        if( window.matchMedia("(min-device-width: 480px) and (max-height: 850px) and  (orientation: landscape) ").matches){
+            container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`;
+        }
+        if( window.matchMedia("only screen and (max-height: 850px) and  (orientation: potrait) ").matches){
+        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`
+        }
+    }
+    
+  
+    if( window.matchMedia("(min-device-width: 480px) and (max-height: 850px) and  (orientation: landscape) ").matches){
+            container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`;
+        }
+        if( window.matchMedia("only screen and (max-height: 850px) and  (orientation: potrait) ").matches){
+            container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`
+            }
+    for(let index=0;index<n;index++){
+
+        let parent = document.createElement("div");
+        parent.className = "block";
+        parent.id = `${index+1}`;
+
+        let childOne = document.createElement("div");
+        childOne.className = "front";
+        childOne.innerHTML = `${index+1}`;
+
+        let childTwo = document.createElement("div");
+        childTwo.className = "behind";
+        childTwo.id = `tile${index+1}`;
+
+        parent.appendChild(childOne);
+        parent.appendChild(childTwo);
+        container.append(parent);
+    }
+}
+
+
+
 let cssColors = {
     "aliceblue": "#f0f8ff",
     "antiquewhite": "#faebd7",
@@ -148,16 +195,18 @@ let cssColors = {
     "yellow": "#ffff00",
     "yellowgreen": "#9acd32"
 }
+
 let colorList = () => {
     let colors = [];
     let namedColors = Object.keys(cssColors);
+    let containerList = document.body.querySelectorAll(".container>.block");
     while (true) {
         const randIndex = Math.floor(Math.random() * namedColors.length);
         if (colors.indexOf(namedColors[randIndex]) < 0) {
             let randomColor = namedColors[randIndex];
             colors.push(randomColor);
         }
-        if (colors.length == 4) {
+        if (colors.length == containerList.length/2) {
             break;
         }
     }
@@ -168,15 +217,15 @@ let colorList = () => {
 
 let indexRandomiser = () => {
     let indices = []; //set empty array
-
+    let containerList = document.body.querySelectorAll(".container>.block");
     while (true) { //while loop;set to true until it breaks
-        let i = Math.floor(Math.random() * 8); //variable assigned any random number between 0 and 7N.B// 8 is excluded;
+        let i = Math.floor(Math.random() * containerList.length); //variable assigned any random number between 0 and 7N.B// 8 is excluded;
 
         if (indices.indexOf(i) < 0) { //if any nu,ber generated in 'i' is not found(returns -1 if not found)
             indices.push(i) //push or insert the randomly generated number into the array
         }
 
-        if (indices.length == 8) { //if the array is all filled(length is equal to 8)
+        if (indices.length == containerList.length) { //if the array is all filled(length is equal to 8)
             break; //then break
         }
     } //this will loop until the array is filled all the way;
@@ -184,8 +233,7 @@ let indexRandomiser = () => {
     return indices; //returns the filled array
 }
 
-//FUNCTION TO PRODUCE RANDOM COLOURS IN AN ARRAY OF 8 VALUES;
-
+//FUNCTION TO PRODUCE RANDOM COLOURS;
 let colourRandomiser = (indices, colors) => {
     let randomisedColours = []; //set empty array;to contain the colours arranged with randomised indexes;
     let count = 0;
@@ -207,81 +255,119 @@ let colourRandomiser = (indices, colors) => {
 }
 
 
-let containerList = document.body.querySelectorAll(".container>.block");
-let counter = 0;
-let randomColours = colourRandomiser(indexRandomiser(), colorList());
-
 let assignBackgroundColors = (el, index, randomColours) => {
     let elementID = el.children[1].id;
     let element = document.getElementById(elementID);
-    element.style.backgroundColor = randomColours[index];
-    element.innerText = randomColours[index];
+    let c = randomColours[index];
+    element.style.backgroundColor = c;
+    element.innerText = c;
+    if(c=="black"){
+        console.log(c);
+        element.style.color="white";
+    }if(c.match("dark")>0){
+        console.log(c);
+        element.style.color="white";
+    }if(c.match(/navy/g)>0){
+        console.log(c);
+        element.style.color="white";
+    }
+    else{
+        element.style.color="black";
+    }
 }
 
 
-for (let index = 0; index < containerList.length; index++) {
-    const blockElement = containerList[index];
-    assignBackgroundColors(blockElement, index, randomColours);
-    blockElement.addEventListener("click", (e) => {
-        e.preventDefault();
-        let elementID = e.currentTarget.id;
-        let element = document.getElementById(elementID);
-        let elementClassList = element.classList;
+function StartGame() {
+    let containerList = document.body.querySelectorAll(".container>.block");
+    let counter = 0;
+    let randomColours = colourRandomiser(indexRandomiser(), colorList());
+    for (let index = 0; index < containerList.length; index++) {
+        const blockElement = containerList[index];
+         assignBackgroundColors(blockElement, index, randomColours);
+        blockElement.addEventListener("click", (e) => {
+            e.preventDefault();
+            let elementID = e.currentTarget.id;
+            let element = document.getElementById(elementID);
+            let elementClassList = element.classList;
 
-        if (counter < 2) {
-            if (!elementClassList.contains("flip")) {
-                elementClassList.add("flip");
-                counter++;
-            }
-        }
-
-        if (counter == 2) {
-            flippedElements = document.querySelectorAll(".block.flip");
-            let unmatchedTiles = [];
-
-            flippedElements.forEach((element) => {
-                if (!element.classList.contains("matched")) {
-                    unmatchedTiles.push(element);
+            if (counter < 2) {
+                if (!elementClassList.contains("flip")) {
+                    elementClassList.add("flip");
+                    counter++;
                 }
-            });
-
-            let tileOne = document.getElementById(unmatchedTiles[0].children[1].id);
-            let tileTwo = document.getElementById(unmatchedTiles[1].children[1].id);
-
-            let computedColor1 = window.getComputedStyle(tileOne).backgroundColor;
-            let computedColor2 = window.getComputedStyle(tileTwo).backgroundColor;
-
-            if (computedColor1 == computedColor2) {
-
-                tileOne.parentElement.classList += " matched ";
-                tileTwo.parentElement.classList += " matched ";
-                setTimeout(() => {
-                    if (document.querySelectorAll(".block.flip.matched").length == 8) {
-                        let newIndex = 0;
-                        let randomColours = colourRandomiser(indexRandomiser(), colorList());
-                        flippedElements.forEach((element) => {
-                            element.classList.remove("flip");
-                            element.classList.remove("matched");
-                            assignBackgroundColors(element, newIndex, randomColours);
-                            newIndex++;
-                        });
-                    }
-                }, 1 * 700)
-                counter = 0;
-            } else {
-                setTimeout(() => {
-                    tileOne.parentElement.classList.remove("flip");
-                    tileTwo.parentElement.classList.remove("flip");
-                }, 1 * 500)
-
-                counter = 0;
-
             }
 
-        }
+            if (counter == 2) {
+                flippedElements = document.querySelectorAll(".block.flip");
+                let unmatchedTiles = [];
 
-    });
+                flippedElements.forEach((element) => {
+                    if (!element.classList.contains("matched")) {
+                        unmatchedTiles.push(element);
+                    }
+                });
 
+                let tileOne = document.getElementById(unmatchedTiles[0].children[1].id);
+                let tileTwo = document.getElementById(unmatchedTiles[1].children[1].id);
 
+                let computedColor1 = window.getComputedStyle(tileOne).backgroundColor;
+                let computedColor2 = window.getComputedStyle(tileTwo).backgroundColor;
 
-}//end of forloop
+                if (computedColor1 == computedColor2) {
+
+                    tileOne.parentElement.classList += " matched ";
+                    tileTwo.parentElement.classList += " matched ";
+                    setTimeout(() => {
+                        if (document.querySelectorAll(".block.flip.matched").length == containerList.length) {
+                            let newIndex = 0;
+                            let randomColours = colourRandomiser(indexRandomiser(), colorList());
+                            flippedElements.forEach((element) => {
+                                element.classList.remove("flip");
+                                element.classList.remove("matched");
+                                 assignBackgroundColors(element, newIndex, randomColours);
+                                newIndex++;
+                            });
+                        }
+                    }, 1 * 700)
+                    counter = 0;
+                } else {
+                    setTimeout(() => {
+                        tileOne.parentElement.classList.remove("flip");
+                        tileTwo.parentElement.classList.remove("flip");
+                    }, 1 * 500)
+
+                    counter = 0;
+                }
+            }
+        });
+    } //end of forloop
+
+}
+
+let num = document.getElementById("level");
+let level=0;
+num.onchange=(e)=>{
+e.preventDefault();
+level = e.currentTarget.value;
+}
+let btnStart = document.getElementById("btnStart");
+btnStart.onclick=()=>{
+    if(level==1){
+        fillTiles(levelOne);
+        StartGame();  
+    }
+    if(level==2){
+        fillTiles(levelTwo);
+        StartGame();  
+    }
+    if(level==3){
+        fillTiles(levelThree);
+        StartGame();  
+    }
+    if(level==4){
+        fillTiles(levelFour);
+        StartGame();  
+    }   
+}
+fillTiles(levelThree);
+StartGame();
