@@ -129,12 +129,12 @@ button[type=button] {
         padding: 10px;
         display: grid;
         gap: 10px;
-        grid-template-columns:repeat(4,100px) ;
+        grid-template-columns:repeat(4,150px) ;
         background-color: rgb(18, 117, 124);
     }
 
     .front,.behind,.block{
-        width: 100px;
+        width: 150px;
         height: 50px;
     }
 

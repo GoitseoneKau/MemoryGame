@@ -9,19 +9,19 @@ function fillTiles(n){
     let x= window.matchMedia("(min-device-width: 480px) and (max-height: 850px) and  (orientation: landscape) ");
     x.onchange=()=>{
         if( window.matchMedia("(min-device-width: 480px) and (max-height: 850px) and  (orientation: landscape) ").matches){
-            container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`;
+            container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},150px)`;
         }
         if( window.matchMedia("only screen and (max-height: 850px) and  (orientation: potrait) ").matches){
-        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`
+        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},150px)`
         }
     }
     
   
     if( window.matchMedia("(min-device-width: 480px) and (max-height: 850px) and  (orientation: landscape) ").matches){
-            container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`;
+            container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},150px)`;
         }
         if( window.matchMedia("only screen and (max-height: 850px) and  (orientation: potrait) ").matches){
-            container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`
+            container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},150px)`
             }
     for(let index=0;index<n;index++){
 
