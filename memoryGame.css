@@ -16,6 +16,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .input-form{
@@ -23,6 +24,7 @@ body{
     width: 100%;
     font:100 20px 'Caprasimo',serif;
     display: inline-flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -98,18 +100,43 @@ button[type=button] {
 }
 
 
-@media only screen and (max-height: 1280px) {
+@media only screen and (max-width: 1280px) {
     .container{
         padding: 10px;
         display: grid;
         gap: 5px;
-        grid-template-columns:repeat(4,150px) ;
+        grid-template-columns:repeat(4,250px) ;
         background-color: rgb(18, 117, 124);
     }
 
     .front,.behind,.block{
-        width: 150px;
-        height: 40px;
+        width: 250px;
+        height: 50px;
+    }
+
+    .behind{
+        font:100 12px 'Caprasimo',serif;
+    }
+
+    .title{
+        font:400 10px 'Caprasimo';
+        text-align: center;
+    }
+
+}
+@media only screen and (max-width: 850px) {
+    .container{
+        padding: 10px;
+        display: grid;
+        gap: 5px;
+        grid-template-columns:repeat(4,100px) ;
+  
+        background-color: rgb(18, 117, 124);
+    }
+
+    .front,.behind,.block{
+        width: 100px;
+        height: 100px;
     }
 
     .behind{
@@ -123,19 +150,18 @@ button[type=button] {
 
 }
 
-
 @media(min-device-width: 480px) and (max-device-height: 850px) and  (orientation: landscape) {
     .container{
         padding: 10px;
         display: grid;
         gap: 5px;
-        grid-template-columns:repeat(4,150px) ;
+        grid-template-columns:repeat(4,100px) ;
         background-color: rgb(18, 117, 124);
     }
 
     .front,.behind,.block{
-        width: 150px;
-        height: 40px;
+        width: 100px;
+        height: 50px;
     }
 
     .behind{

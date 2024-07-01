@@ -6,19 +6,28 @@ const levelFour = 12;
 function fillTiles(n){
     let container = document.getElementById("con");
     container.replaceChildren("");
-    let x= window.matchMedia("(min-device-width: 480px) and (max-height: 850px) and  (orientation: landscape) ");
-    let tryme = window.innerWidth;
- 
-        if( tryme==850){
-            container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},150px)`;
-        }
-        // if( window.matchMedia("only screen and (max-height: 850px) and  (orientation: potrait) ").matches){
-        // container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},150px)`
-        // }
-    
-    
-  
-    
+    window.onresize=(e)=>{
+       if( e.currentTarget.innerWidth<=850){
+        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`
+       }
+       if( e.currentTarget.innerWidth>850){
+        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},250px)`
+       }
+       if( e.currentTarget.innerHeight<=500){
+        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`
+       }
+    }
+    if( window.innerWidth<=850){
+        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`
+       }
+       if(window.innerWidth>850){
+        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},250px)`
+       }
+       if( window.innerHeight<=500){
+        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`
+       }
+       
+
     for(let index=0;index<n;index++){
 
         let parent = document.createElement("div");
