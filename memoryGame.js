@@ -352,6 +352,7 @@ let assignBackgroundColors = (el, index, randomColours) => {
 
 
 function StartGame() {
+
     let containerList = document.body.querySelectorAll(".container>.block");
     let counter = 0;
     let randomColours = colourRandomiser(indexRandomiser(), colorList());
@@ -419,9 +420,43 @@ function StartGame() {
 }
 
 
-let difficulty =document.getElementById("difficulty");
+let timerElement=document.getElementById("timer");
+let x=0;
+function counter(minute=0){
+    let second = 60;
+    if (minute > 0) {
+        minute--;
+    }
+    x = setInterval(function timer() {
+
+        if (second < 1) {
+            if (minute > 0) {
+                minute--;
+                second = 60;
+            }
+        }
+
+        second--;
+
+        let strSecond = second >= 10 ? second.toString() : "0" + second.toString();
+        let strMinute = minute >= 10 ? minute.toString() : "0" + minute.toString();
+
+        timerElement.innerText = strMinute + ":" + strSecond;
+        let container = document.getElementById("con");
+        if (document.querySelectorAll(".block.flip.matched").length == container.children.length) {
+            clearInterval(x);
+        } else if (minute == 0 && second == 0) {
+            clearInterval(x);
+        }
+
+    }, 1000);
+}
+
+
+let difficulty = document.getElementById("difficulty");
 let num = document.getElementById("level");
 let level = 0;
+
 num.onchange = (e) => {
     e.preventDefault();
     level = e.currentTarget.value;
@@ -432,36 +467,45 @@ let btnStart = document.getElementById("btnStart");
 btnStart.onclick = () => {
     if (level == 1) {
         fillTiles(levelOne);
+        counter();
         difficulty.innerHTML="Difficulty : Easy"
         StartGame();
     }
     if (level == 2) {
         fillTiles(levelTwo);
+        counter();
         difficulty.innerHTML="Difficulty : Intermediate-Easy"
         StartGame();
     }
     if (level == 3) {
         fillTiles(levelThree);
+        counter(1);
         difficulty.innerHTML="Difficulty : Medium"
         StartGame();
     }
     if (level == 4) {
         fillTiles(levelFour);
+        counter(1);
         difficulty.innerHTML="Difficulty : Intermediate-Hard"
         StartGame();
     }
     if (level == 5) {
         fillTiles(levelFive);
+        counter(1);
         difficulty.innerHTML="Difficulty : Hard"
         StartGame();
     }
     if (level == 6) {
         fillTiles(levelSix);
+        counter(2);
         difficulty.innerHTML="Difficulty : Harder"
         StartGame();
     }
 }
+
+
 fillTiles(levelThree);
+counter(1);
 num.value=3;
 difficulty.innerHTML="Difficulty : Medium"
 StartGame();
