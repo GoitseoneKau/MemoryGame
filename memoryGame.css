@@ -20,8 +20,18 @@
     width: 100%;
 }
 
+.difficultyTime{
+    display: inline-flex;
+}
+
+.bestTime{
+    font:100 18px 'Caprasimo',serif;
+    padding: 0 5px;
+}
+
 .difficulty{
     font:100 18px 'Caprasimo',serif;
+    padding: 0 5px;
 }
 
 .input-form{
