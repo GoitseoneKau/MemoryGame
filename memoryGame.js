@@ -1,46 +1,61 @@
+//level constants
 const levelOne = 4;
 const levelTwo = 6;
 const levelThree = 8;
 const levelFour = 12;
+const levelFive = 16;
+const levelSix = 20;
 
-function fillTiles(n){
+//function to create game tiles
+function fillTiles(n) {
     let container = document.getElementById("con");
     container.replaceChildren("");
-    window.onresize=(e)=>{
-       if( e.currentTarget.innerWidth<=850){
-        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`
-       }
-       if( e.currentTarget.innerWidth>850){
-        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},250px)`
-       }
-       if( e.currentTarget.innerHeight<=500){
-        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`
-       }
+    let condition = n == 12 ? n / 3 : n >= 16 ? n / 4 : n / 2;
+    window.onresize = (e) => {
+
+        if (e.currentTarget.innerWidth <= 850) {
+            container.style.gridTemplateColumns = `repeat(${condition},1fr)`
+        }
+        if (e.currentTarget.innerWidth > 850) {
+            container.style.gridTemplateColumns = `repeat(${condition},1fr)`
+        }
+        if (window.innerHeight <= 450 && window.innerHeight <= 950) {
+            container.style.gridTemplateColumns = `repeat(${condition},1fr)`
+        }
+        if (window.innerHeight <= 360 && window.innerHeight <= 750) {
+            container.style.gridTemplateColumns = `repeat(${condition},1fr)`
+        }
     }
-    if( window.innerWidth<=850){
-        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`
-       }
-       if(window.innerWidth>850){
-        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},250px)`
-       }
-       if( window.innerHeight<=500){
-        container.style.gridTemplateColumns=`repeat(${n==12?n/3:n/2},100px)`
-       }
-       
 
-    for(let index=0;index<n;index++){
+    if (window.innerWidth <= 850) {
+        container.style.gridTemplateColumns = `repeat(${condition},1fr)`
+    }
+    if (window.innerWidth > 850) {
+        container.style.gridTemplateColumns = `repeat(${condition},1fr)`
+    }
+    if (window.innerHeight <= 450 && window.innerHeight <= 950) {
+        container.style.gridTemplateColumns = `repeat(${condition},1fr)`
+    }
+    if (window.innerHeight <= 360 && window.innerHeight <= 750) {
+        container.style.gridTemplateColumns = `repeat(${condition},1fr)`
+    }
+    //forLoop to create 'n' number of tiles in 'div' elements
+    for (let index = 0; index < n; index++) {
 
-        let parent = document.createElement("div");
+        let parent = document.createElement("div");//create tile element
         parent.className = "block";
         parent.id = `${index+1}`;
 
-        let childOne = document.createElement("div");
+        let childOne = document.createElement("div");//first child,front face of tile element,shows tile number
         childOne.className = "front";
         childOne.innerHTML = `${index+1}`;
 
-        let childTwo = document.createElement("div");
+        let childTwo = document.createElement("div");//second child,back face of tile element,shows color
         childTwo.className = "behind";
         childTwo.id = `tile${index+1}`;
+        if (n == 20) {
+            childTwo.style.font = "300 11px 'Caprasimo',serif;";
+        }
 
         parent.appendChild(childOne);
         parent.appendChild(childTwo);
@@ -49,7 +64,7 @@ function fillTiles(n){
 }
 
 
-
+//list of colours in game
 let cssColors = {
     "aliceblue": "#f0f8ff",
     "antiquewhite": "#faebd7",
@@ -201,6 +216,7 @@ let cssColors = {
     "yellowgreen": "#9acd32"
 }
 
+//function;pick colors at random 'n' times game tiles divide by 2
 let colorList = () => {
     let colors = [];
     let namedColors = Object.keys(cssColors);
@@ -211,7 +227,7 @@ let colorList = () => {
             let randomColor = namedColors[randIndex];
             colors.push(randomColor);
         }
-        if (colors.length == containerList.length/2) {
+        if (colors.length == containerList.length / 2) {
             break;
         }
     }
@@ -219,7 +235,7 @@ let colorList = () => {
     return colors;
 }
 
-
+//function;randomize indexes of gae tiles; later used to fill colours in
 let indexRandomiser = () => {
     let indices = []; //set empty array
     let containerList = document.body.querySelectorAll(".container>.block");
@@ -259,25 +275,78 @@ let colourRandomiser = (indices, colors) => {
     return randomisedColours;
 }
 
+let primaryColours = ["blue", "red", "yellow", "green", "brown", "white","purple","gray","grey"];
+let primaryColorChecker = (str="") => {
+    let position;
+    for (let index = 0; index < primaryColours.length; index++) {
+        position = str.indexOf(primaryColours[index].toString());
+
+        if (position > 0) {
+            return position;
+        }
+    }
+        
+    return -1;
+}
+console.log(primaryColorChecker("paleblue"))
+let stringPanelFormatter = (str) => {
+    let result;
+    let l="light";
+    let d ="dark";
+    let m ="medium";
+    let p ="pale"
+    let w="white"
+  
+    if (primaryColorChecker(str)>0 && str.indexOf(d)!=0 && str.indexOf(l)!=0 && str.indexOf(m)!=0 &&  str.indexOf(p)!=0) {
+       let position = primaryColorChecker(str);
+        result = stringPanelFormatter(str.substring(0, position)).padEnd(3) + "\n" + strUpperCase(str.substring(position, str.length));
+       
+        return result;
+    } else if (str.indexOf(d) == 0) {
+         let position = str.indexOf(d);
+
+         return result = str.substring(position, d.length) + "\n" + /* stringPanelFormatter( */strUpperCase(str.substring(d.length, str.length))/* ) */;
+     } else if (str.indexOf(l) == 0 ) {
+         let position = str.indexOf(l);
+
+         return result = str.substring(position, l.length) + "\n" + stringPanelFormatter(strUpperCase(str.substring(l.length, str.length)));
+     } else if (str.indexOf(m) == 0 ) {
+         let position = str.indexOf(m);
+
+         return result = str.substring(position, m.length) + "\n" + strUpperCase(str.substring(m.length, str.length));
+     }
+     else if (str.indexOf(p) == 0 ) {
+         let position = str.indexOf(p);
+
+         return result = str.substring(position, p.length) + "\n" + stringPanelFormatter(strUpperCase(str.substring(p.length, str.length)));
+    }else if (str.indexOf(w) == 0 ) {
+        let position = str.indexOf(w);
+
+        return result = str.substring(position, w.length) + "\n" + stringPanelFormatter(strUpperCase(str.substring(w.length, str.length)));
+   }
+
+    return str;
+}
+
+let strUpperCase = (str) => str.charAt(0).toUpperCase() + str.slice(1, str.length);
 
 let assignBackgroundColors = (el, index, randomColours) => {
+
     let elementID = el.children[1].id;
     let element = document.getElementById(elementID);
-    let c = randomColours[index];
+    let c = `${randomColours[index]}`;
+
     element.style.backgroundColor = c;
-    element.innerText = c;
-    if(c=="black"){
-        console.log(c);
-        element.style.color="white";
-    }if(c.match("dark")>0){
-        console.log(c);
-        element.style.color="white";
-    }if(c.match(/navy/g)>0){
-        console.log(c);
-        element.style.color="white";
-    }
-    else{
-        element.style.color="black";
+    element.innerText = strUpperCase(stringPanelFormatter(c));
+
+    if (c == 'black') {
+        element.style.color = "white";
+    } else if (c.indexOf('dark') >= 0) {
+        element.style.color = "white";
+    } else if (c.indexOf("navy") >= 0) {
+        element.style.color = "white";
+    } else if (c.indexOf("blue") >= 0 && c.indexOf("alice") < 0 && c.indexOf("light") < 0) {
+        element.style.color = "white";
     }
 }
 
@@ -288,7 +357,7 @@ function StartGame() {
     let randomColours = colourRandomiser(indexRandomiser(), colorList());
     for (let index = 0; index < containerList.length; index++) {
         const blockElement = containerList[index];
-         assignBackgroundColors(blockElement, index, randomColours);
+        assignBackgroundColors(blockElement, index, randomColours);
         blockElement.addEventListener("click", (e) => {
             e.preventDefault();
             let elementID = e.currentTarget.id;
@@ -329,7 +398,7 @@ function StartGame() {
                             flippedElements.forEach((element) => {
                                 element.classList.remove("flip");
                                 element.classList.remove("matched");
-                                 assignBackgroundColors(element, newIndex, randomColours);
+                                assignBackgroundColors(element, newIndex, randomColours);
                                 newIndex++;
                             });
                         }
@@ -349,30 +418,50 @@ function StartGame() {
 
 }
 
+
+let difficulty =document.getElementById("difficulty");
 let num = document.getElementById("level");
-let level=0;
-num.onchange=(e)=>{
-e.preventDefault();
-level = e.currentTarget.value;
+let level = 0;
+num.onchange = (e) => {
+    e.preventDefault();
+    level = e.currentTarget.value;
 }
+
 let btnStart = document.getElementById("btnStart");
-btnStart.onclick=()=>{
-    if(level==1){
+
+btnStart.onclick = () => {
+    if (level == 1) {
         fillTiles(levelOne);
-        StartGame();  
+        difficulty.innerHTML="Difficulty : Easy"
+        StartGame();
     }
-    if(level==2){
+    if (level == 2) {
         fillTiles(levelTwo);
-        StartGame();  
+        difficulty.innerHTML="Difficulty : Intermediate-Easy"
+        StartGame();
     }
-    if(level==3){
+    if (level == 3) {
         fillTiles(levelThree);
-        StartGame();  
+        difficulty.innerHTML="Difficulty : Medium"
+        StartGame();
     }
-    if(level==4){
+    if (level == 4) {
         fillTiles(levelFour);
-        StartGame();  
-    }   
+        difficulty.innerHTML="Difficulty : Intermediate-Hard"
+        StartGame();
+    }
+    if (level == 5) {
+        fillTiles(levelFive);
+        difficulty.innerHTML="Difficulty : Hard"
+        StartGame();
+    }
+    if (level == 6) {
+        fillTiles(levelSix);
+        difficulty.innerHTML="Difficulty : Harder"
+        StartGame();
+    }
 }
 fillTiles(levelThree);
+num.value=3;
+difficulty.innerHTML="Difficulty : Medium"
 StartGame();
