@@ -511,7 +511,7 @@ if(level==6){
             counter(level,difficulty);
         } else if (minute == 0 && second == 0) {
             clearInterval(x);
-            document.getElementById("GameOver").classList.add("hide");
+            document.getElementById("GameOver").classList.remove("hide");
         }
 
     }, 1000);
@@ -519,14 +519,32 @@ if(level==6){
 
 
 let difficulty = document.getElementById("difficulty");
-let num = document.getElementById("level");
+// let num = document.getElementById("level");
 let level = 0;
 
-num.onchange = (e) => {
-    e.preventDefault();
-    level = e.currentTarget.value;
+// num.onchange = (e) => {
+//     e.preventDefault();
+//     level = e.currentTarget.value;
+// }
+let inputContainer = document.querySelector(".input-container");
+let num = inputContainer.firstElementChild.nextElementSibling;
+let minus = inputContainer.firstElementChild;
+let plus = inputContainer.lastElementChild;
+
+function changeNumber(e) {
+    if(e.target == minus) {
+        if(num.value>1){
+            num.value--;
+        }
+    } else if(e.target == plus) {
+        if(num.value<6){
+            num.value++;
+        }
+    }
+    level=num.value;
 }
 
+inputContainer.addEventListener("click", changeNumber);
 
 
 let btnStart = document.getElementById("btnStart");
@@ -588,7 +606,8 @@ btnStart.onclick = () => {
 
 let btnPlayAgain = document.getElementById("playAgain");
 btnPlayAgain.onclick = ()=>{
-    document.getElementById("GameOver").classList.remove("hide");
+    document.getElementById("GameOver").classList.add("hide");
+    Game();
     if (level == 1) {
         Game(levelOne,level,gameDifficulty) 
     }
