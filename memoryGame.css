@@ -304,6 +304,9 @@ button[type=button]:active {
         grid-template-columns:repeat(4,1fr) ;
         background-color: rgb(0, 0, 0);
     }
+    .difficultyTime{
+        flex-direction: column;
+    }
     .GameOver{
         border-color:  rgb(0, 0, 0);
         width: 800px;
@@ -400,6 +403,9 @@ button[type=button]:active {
         gap: 2px;
         grid-template-columns:repeat(4,1fr) ;
         background-color: rgb(0, 0, 0);
+    }
+    .bestTime{
+        padding: 0 5px;
     }
     .GameOver{
         border-color:  rgb(0, 0, 0);
