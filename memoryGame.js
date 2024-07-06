@@ -1,3 +1,7 @@
+// const moment = require("moment");
+
+//const moment = require("moment/moment");
+
 //level constants
 const levelOne = 4;
 const levelTwo = 6;
@@ -345,8 +349,6 @@ let assignBackgroundColors = (el, index, randomColours) => {
         element.style.color = "white";
     } else if (c.indexOf("navy") >= 0) {
         element.style.color = "white";
-    } else if (c.indexOf("blue") >= 0 && c.indexOf("alice") < 0 && c.indexOf("light") < 0) {
-        element.style.color = "white";
     }
 }
 
@@ -423,40 +425,90 @@ function StartGame() {
 let timerElement=document.getElementById("timer");
 let x=0;
 let bestScore = {"Easy":"0","Intermediate-Easy":"0","Medium":"0","Intermediate-Medium":"0","Hard":"0","Harder":"0"}
-console.log(bestScore["Easy"])
+
 let scoreSet = (d,score)=>{
+    let t = score.split(":");
+    
     Object.keys(bestScore).forEach((diff)=>{
+        let t2 = bestScore[diff].split(":");
+       
+        
         if(diff=d){
-            bestScore[diff] = score;
+            if( bestScore[diff]=="0"){
+                bestScore[diff] = score; 
+            }
+            else{
+                 if(parseInt(t[0])>=parseInt(t2[0]) && parseInt(t[1])>=parseInt(t2[1])){
+                console.log(score,"score on current best");
+                bestScore[diff] = score;}
+            }
         }
     })
 }
 let bestTime = document.getElementById("bestTime");
-function counter(minute=0,difficulty){
-    let second = 60;
-    if (minute > 0) {
-        minute--;
+
+function counter(level,difficulty){
+    clearInterval(x);
+    let second =0;
+    let minute = 0;
+if(level== 1){
+    second = 30;
+    minute = 0;
+    console.log(second)
+}
+if(level==2){
+    second = 40;
+        minute = 0
+}
+if(level==3){
+    second = 60;
+        minute = 0
+}
+if(level==4){
+    second = 30;
+    minute = 1
+}
+if(level==5){
+    second = 50;
+    minute = 1
+}
+if(level==6){
+    second = 0;
+    minute = 2
+    console.log("level",level,"minute",minute,"second",second)
+}
+
+    if (second < 60) {
+        if (minute > 1) {
+            minute--;
+            second=60;
+        }
     }
     x = setInterval(function timer() {
-
+        console.log("level",level,"minute",minute,"second",second)
         if (second < 1) {
             if (minute > 0) {
                 minute--;
                 second = 60;
             }
         }
-
+        
         second--;
 
         let strSecond = second >= 10 ? second.toString() : "0" + second.toString();
         let strMinute = minute >= 10 ? minute.toString() : "0" + minute.toString();
-        let time =strMinute + ":" + strSecond;
-        timerElement.innerText = time;
+        
+        let time =`${strMinute}:${strSecond}`;
+        console.log(time,"minute : ",minute,"seconds: ",second);
+        timerElement.innerText =time;
+      
         let container = document.getElementById("con");
         if (document.querySelectorAll(".block.flip.matched").length == container.children.length) {
             scoreSet(difficulty,time);
-            bestTime.innerHTML =`Best Time : ${bestScore[difficulty]}`;
             clearInterval(x);
+            bestTime.innerHTML =`Best Time : ${bestScore[difficulty]}`;
+            timerElement.innerText ="00:00";
+            counter(level,difficulty);
         } else if (minute == 0 && second == 0) {
             clearInterval(x);
         }
@@ -477,68 +529,62 @@ num.onchange = (e) => {
 let btnStart = document.getElementById("btnStart");
 let gameDifficulty;
 btnStart.onclick = () => {
+    clearInterval(x);
+     bestTime.innerHTML =`Best Time : 00:00`;
+     
     if (level == 1) {
         
         gameDifficulty = Object.keys(bestScore)[0];
         difficulty.innerHTML=`Difficulty :${gameDifficulty}`;
-        bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]}`;
-        fillTiles(levelOne);
-        counter(0,gameDifficulty);
-        StartGame();
+        bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]&&"00:00"}`;
+        setTimeout(Game(levelOne,level,gameDifficulty),1000);
     }
     if (level == 2) {
         
         gameDifficulty = Object.keys(bestScore)[1];
         difficulty.innerHTML=`Difficulty :${gameDifficulty}`;
-        bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]}`;
-        fillTiles(levelTwo);
-        counter(0,gameDifficulty);
-        StartGame();
+        bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]&&"00:00"}`;
+       setTimeout( Game(levelTwo,level,gameDifficulty),1000);
     }
     if (level == 3) {
         
         gameDifficulty = Object.keys(bestScore)[2];
         difficulty.innerHTML=`Difficulty :${gameDifficulty}`;
-        bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]}`;
-        fillTiles(levelThree);
-        counter(1,gameDifficulty);
-        StartGame();
+        bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]&&"00:00"}`;
+        setTimeout(Game(levelThree,level,gameDifficulty),1000);
     }
     if (level == 4) {
         
         gameDifficulty = Object.keys(bestScore)[3];
         difficulty.innerHTML=`Difficulty :${gameDifficulty}`;
-        bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]}`;
-        fillTiles(levelFour);
-        counter(1,gameDifficulty);
-        StartGame();
+        bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]&&"00:00"}`;
+        setTimeout(Game(levelFour,level,gameDifficulty), 1000);
     }
     if (level == 5) {
         
         gameDifficulty = Object.keys(bestScore)[4];
         difficulty.innerHTML=`Difficulty :${gameDifficulty}`;
-        bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]}`;
-        fillTiles(levelFive);
-        counter(1,gameDifficulty);
-        StartGame();
+        bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]&&"00:00"}`;
+       setTimeout( Game(levelFive,level,gameDifficulty),1000)
     }
     if (level == 6) {
         
         gameDifficulty = Object.keys(bestScore)[5];
         difficulty.innerHTML=`Difficulty :${gameDifficulty}`;
-        bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]}`;
-        fillTiles(levelSix);
-        counter(2,gameDifficulty);
-        StartGame();
+        bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]&&"00:00"}`;
+       setTimeout( Game(levelSix,level,gameDifficulty),1000);
     }
 }
 
 
-num.value=3;
-gameDifficulty = Object.keys(bestScore)[2];
+num.value=2;
+gameDifficulty = Object.keys(bestScore)[1];
 difficulty.innerHTML=`Difficulty :${gameDifficulty}`;
 bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]}`;
+Game();
 
-fillTiles(levelThree);
-counter(1,gameDifficulty);
-StartGame();
+function Game(levelName=levelTwo,levelNum=2,gameDifficulty=Object.keys(bestScore)[1]){
+    fillTiles(levelName);
+    counter(levelNum,gameDifficulty);
+    StartGame();
+}
