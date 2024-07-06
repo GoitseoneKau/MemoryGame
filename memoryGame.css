@@ -27,9 +27,14 @@
     display: inline-flex;
 }
 
+#timer{
+    font:100 18px 'Caprasimo',serif;
+    padding: 0 15px;
+}
+
 .bestTime{
     font:100 18px 'Caprasimo',serif;
-    padding: 0 5px;
+    padding: 0 15px;
 }
 .gameText{
     display: flex;
@@ -41,7 +46,7 @@
 
 .difficulty{
     font:100 18px 'Caprasimo',serif;
-    padding: 0 5px;
+    padding: 0 15px;
 }
 
 .input-form{
@@ -678,7 +683,17 @@ button[type=button]:active {
         grid-template-columns:repeat(4,1fr) ;
         background-color:  rgb(82, 0, 176);
     }
-
+    .input-form{
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .input-form>label{
+        padding: 5px;
+        width: 100%;
+        text-align: center;
+        font: 700 22px 'Caprasimo', serif;
+    }
     button[type=button] {
         border: 1px solid black;
         color:white;
@@ -699,14 +714,20 @@ button[type=button]:active {
     }
 
     .Game-Container{
-        padding: 5px 50px;
+        padding: 0px 50px;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .GameOver{
-        margin-top: 5px;
+        margin-top: 20%;
         border-color:  rgb(82, 0, 176);
         width: 400px;
         height: 350px;
+    }
+    .gameText{
+        flex-direction: row;
+        padding: 5px 0 ;
     }
 
     .fa-circle-xmark{
@@ -723,9 +744,14 @@ button[type=button]:active {
     }
 
     .title{
-        font:400 18px 'Caprasimo';
+        font:900 30px 'Caprasimo';
         text-align: center;
     }
+    .level{
+        padding: 0px;
+    }
+
+ 
 }
 
 @media(min-device-width: 360px) and (max-device-height: 750px) and  (orientation: landscape) {
@@ -746,12 +772,17 @@ button[type=button]:active {
     }
     .Game-Container{
         padding: 0px 50px;
+        margin-top: 0;
+        margin-bottom: 0;
     }
     .GameOver{
-        margin-top: 5px;
+        margin-top: 20%;
         border-color:  rgb(181, 3, 0);
         width: 400px;
         height: 350px;
+    }
+    .gameText{
+        flex-direction: row;
     }
 
     .fa-circle-xmark{
@@ -780,9 +811,10 @@ button[type=button]:active {
     }
 
     .title{
-        font:400 18px 'Caprasimo';
+        font:900 30px 'Caprasimo';
         text-align: center;
     }
+
 }
 
 @media(max-device-width: 680px) and (max-device-height: 375px) and  (orientation: landscape) {
@@ -804,14 +836,18 @@ button[type=button]:active {
     }
     .Game-Container{
         padding: 0px 50px;
+        margin-top: 0;
+        margin-bottom: 0;
     }
     .GameOver{
-        margin-top: 5px;
+        margin-top: 20%;
         border-color:  rgb(71, 179, 0);
         width: 400px;
         height: 350px;
     }
-
+    .gameText{
+        flex-direction: row;
+    }
     .fa-circle-xmark{
         color: rgb(71, 179, 0);
     }
@@ -836,9 +872,10 @@ button[type=button]:active {
     }
 
     .title{
-        font:400 18px 'Caprasimo';
+        font:900 30px 'Caprasimo';
         text-align: center;
     }
+
 }
 
 @media(max-device-width: 740px) and (max-device-height: 360px) and  (orientation: landscape) {
@@ -860,15 +897,19 @@ button[type=button]:active {
     }
     .Game-Container{
         padding: 0px 50px;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .GameOver{
-        margin-top: 5px;
+        margin-top: 20%;
         border-color:  rgb(160, 0, 80);
         width: 400px;
         height: 350px;
     }
-
+    .gameText{
+        flex-direction: row;
+    }
     .fa-circle-xmark{
         color: rgb(160, 0, 80);
     }
@@ -893,7 +934,7 @@ button[type=button]:active {
     }
 
     .title{
-        font:400 18px 'Caprasimo';
+        font:900 30px 'Caprasimo';
         text-align: center;
-    }
+    } 
 }
