@@ -31,6 +31,13 @@
     font:100 18px 'Caprasimo',serif;
     padding: 0 5px;
 }
+.gameText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
 .difficulty{
     font:100 18px 'Caprasimo',serif;
@@ -139,7 +146,7 @@ button[type=button]:active {
     padding: 5px;
 }
 
-.inputButton,.inputNumber{
+.inputButton,.inputNumber,.display{
     padding: 2px 5px;
 }
 
@@ -149,6 +156,35 @@ button[type=button]:active {
     transition: rotate 4;
 }
 
+.GameOver{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 500px;
+    z-index: 1;
+    position: absolute;
+    background-color: white;
+    border: 2px solid chocolate;
+   margin-top: 80px;
+}
+
+.fa-circle-xmark{
+    color: chocolate;
+    margin-left: 92%;
+    top: 0;
+    margin-top: 10px;
+    position: absolute;
+    padding: 5px;
+}
+#close{
+    font-weight: bold;
+}
+
+.hide{
+    display: none;
+}
 
 @media only screen and (max-width: 1280px) {
     .container{
@@ -157,6 +193,14 @@ button[type=button]:active {
         gap: 5px;
         grid-template-columns:repeat(4,1fr) ;
         background-color: rgb(0, 77, 82);
+    }
+    .GameOver{
+        border-color:   rgb(0, 77, 82);
+        width: 400px;
+        height: 400px;
+    }
+    .fa-circle-xmark{
+        color: rgb(0, 77, 82);
     }
 
     button[type=button] {
@@ -194,6 +238,15 @@ button[type=button]:active {
         grid-template-columns:repeat(4,1fr) ;
         background-color: rgb(0, 0, 0);
     }
+    .GameOver{
+        border-color:  rgb(0, 0, 0);
+        width: 800px;
+        height: 800px;
+    }
+    .fa-circle-xmark{
+        color: rgb(0, 0, 0);
+    }
+
 
     button[type=button] {
         border: 1px solid black;
@@ -230,6 +283,14 @@ button[type=button]:active {
         gap: 4px;
         grid-template-columns:repeat(4,1fr) ;
         background-color: rgb(0, 0, 0);
+    }
+    .GameOver{
+        border-color:  rgb(0, 0, 0);
+        width: 700px;
+        height: 700px;
+    }
+    .Game-Container{
+        padding: 5px 10px;
     }
 
     button[type=button] {
@@ -268,6 +329,14 @@ button[type=button]:active {
         grid-template-columns:repeat(4,1fr) ;
         background-color: rgb(0, 0, 0);
     }
+    .GameOver{
+        border-color:  rgb(0, 0, 0);
+        width: 500px;
+        height: 500px;
+    }
+    .Game-Container{
+        padding: 5px 10px;
+    }
 
     button[type=button] {
         border: 1px solid black;
@@ -303,6 +372,19 @@ button[type=button]:active {
         gap: 5px;
         grid-template-columns:repeat(4,1fr) ;
         background-color: rgb(0, 91, 127);
+    }
+
+    .GameOver{
+        border-color:  rgb(0, 91, 127);
+        width: 400px;
+        height: 400px;
+    }
+
+    .Game-Container{
+        padding: 5px 10px;
+    }
+    .fa-circle-xmark{
+        color: rgb(0, 91, 127);
     }
 
     button[type=button] {
@@ -342,6 +424,16 @@ button[type=button]:active {
         background-color: rgb(0, 120, 74);
     }
 
+    .GameOver{
+        border-color:  rgb(0, 120, 74);
+        width: 350px;
+        height: 350px;
+    }
+    .fa-circle-xmark{
+        color:  rgb(0, 120, 74);
+    }
+    
+
      button[type=button] {
         border: 1px solid black;
         color:white;
@@ -360,7 +452,7 @@ button[type=button]:active {
     }
 
     .Game-Container{
-        padding: 10px 40px;
+        padding: 5px 10px;
     }
 
     .behind{
@@ -383,6 +475,10 @@ button[type=button]:active {
         background-color: rgb(0, 65, 47);
     }
 
+    .fa-circle-xmark{
+        color:rgb(0, 65, 47);
+    }
+
     button[type=button] {
         border: 1px solid black;
         color:white;
@@ -400,7 +496,12 @@ button[type=button]:active {
     }
 
     .Game-Container{
-        padding: 10px 40px;
+        padding: 5px 10px;
+    }
+    .GameOver{
+        border-color:  rgb(0, 65, 47);
+        width: 350px;
+        height: 350px;
     }
 
     .behind{
@@ -422,6 +523,17 @@ button[type=button]:active {
         grid-template-columns:repeat(4,1fr) ;
         background-color: rgb(82, 0, 176);
     }
+    .fa-circle-xmark{
+        color:rgb(82, 0, 176);
+    }
+    .Game-Container{
+        padding: 5px 10px;
+    }
+    .GameOver{
+        border-color:  rgb(82, 0, 176);
+        width: 350px;
+        height: 350px;
+    }
 
     button[type=button] {
         border: 1px solid black;
@@ -438,10 +550,6 @@ button[type=button]:active {
     .front,.behind,.block{
         width: 65px;
         height: 60px;
-    }
-
-    .Game-Container{
-        padding: 10px 30px;
     }
 
     .behind{
@@ -461,23 +569,34 @@ button[type=button]:active {
         display: grid;
         gap: 2px;
         grid-template-columns:repeat(4,1fr) ;
-        background-color: rgb(124, 44, 18);
+        background-color:  rgb(82, 0, 176);
     }
 
     button[type=button] {
         border: 1px solid black;
         color:white;
-        background-color: rgb(124, 44, 18);
+        background-color:  rgb(82, 0, 176);
     }
     
     button[type=button]:active {
-        border: 1px groove rgb(124, 44, 18);
-        color:rgb(124, 44, 18);
+        border: 1px groove  rgb(82, 0, 176);
+        color:  rgb(82, 0, 176);
         background-color:white;
     }
 
     .Game-Container{
         padding: 5px 50px;
+    }
+
+    .GameOver{
+        margin-top: 5px;
+        border-color:  rgb(82, 0, 176);
+        width: 400px;
+        height: 350px;
+    }
+
+    .fa-circle-xmark{
+        color:rgb(82, 0, 176);
     }
 
     .front,.behind,.block{
@@ -506,6 +625,28 @@ button[type=button]:active {
     .Game-Container{
         padding: 0px 50px;
     }
+    .GameOver{
+        margin-top: 5px;
+        border-color:  rgb(181, 3, 0);
+        width: 400px;
+        height: 350px;
+    }
+
+    .fa-circle-xmark{
+        color:rgb(181, 3, 0);
+    }
+
+    button[type=button] {
+        border: 1px solid black;
+        color:white;
+        background-color: rgb(181, 3, 0);
+    }
+    
+    button[type=button]:active {
+        border: 1px groove rgb(181, 3, 0);
+        color:rgb(181, 3, 0);
+        background-color:white;
+    }
 
     .front,.behind,.block{
         width: 140px;
@@ -533,7 +674,27 @@ button[type=button]:active {
     .Game-Container{
         padding: 0px 50px;
     }
+    .GameOver{
+        margin-top: 5px;
+        border-color:  rgb(71, 179, 0);
+        width: 400px;
+        height: 350px;
+    }
 
+    .fa-circle-xmark{
+        color: rgb(71, 179, 0);
+    }
+    button[type=button] {
+        border: 1px solid black;
+        color:white;
+        background-color: rgb(71, 179, 0);
+    }
+    
+    button[type=button]:active {
+        border: 1px groove rgb(71, 179, 0);
+        color:rgb(71, 179, 0);
+        background-color:white;
+    }
     .front,.behind,.block{
         width: 100px;
         height: 50px;
@@ -561,6 +722,27 @@ button[type=button]:active {
         padding: 0px 50px;
     }
 
+    .GameOver{
+        margin-top: 5px;
+        border-color:  rgb(160, 0, 80);
+        width: 400px;
+        height: 350px;
+    }
+
+    .fa-circle-xmark{
+        color: rgb(160, 0, 80);
+    }
+    button[type=button] {
+        border: 1px solid black;
+        color:white;
+        background-color: rgb(160, 0, 80);
+    }
+    
+    button[type=button]:active {
+        border: 1px groove rgb(160, 0, 80);
+        color:rgb(160, 0, 80);
+        background-color:white;
+    }
     .front,.behind,.block{
         width: 100px;
         height: 50px;

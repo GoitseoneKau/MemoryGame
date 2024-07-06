@@ -500,17 +500,18 @@ if(level==6){
         
         let time =`${strMinute}:${strSecond}`;
         console.log(time,"minute : ",minute,"seconds: ",second);
-        timerElement.innerText =time;
+        timerElement.innerText =`Time = ${time}`;
       
         let container = document.getElementById("con");
         if (document.querySelectorAll(".block.flip.matched").length == container.children.length) {
             scoreSet(difficulty,time);
             clearInterval(x);
             bestTime.innerHTML =`Best Time : ${bestScore[difficulty]}`;
-            timerElement.innerText ="00:00";
+            timerElement.innerText ="time = 00:00";
             counter(level,difficulty);
         } else if (minute == 0 && second == 0) {
             clearInterval(x);
+            document.getElementById("GameOver").classList.add("hide");
         }
 
     }, 1000);
@@ -526,8 +527,17 @@ num.onchange = (e) => {
     level = e.currentTarget.value;
 }
 
+
+
 let btnStart = document.getElementById("btnStart");
 let gameDifficulty;
+
+
+function Game(levelName=levelTwo,levelNum=2,gameDifficulty=Object.keys(bestScore)[1]){
+    fillTiles(levelName);
+    counter(levelNum,gameDifficulty);
+    StartGame();
+}
 btnStart.onclick = () => {
     clearInterval(x);
      bestTime.innerHTML =`Best Time : 00:00`;
@@ -576,15 +586,32 @@ btnStart.onclick = () => {
     }
 }
 
+let btnPlayAgain = document.getElementById("playAgain");
+btnPlayAgain.onclick = ()=>{
+    document.getElementById("GameOver").classList.remove("hide");
+    if (level == 1) {
+        Game(levelOne,level,gameDifficulty) 
+    }
+    if (level == 2) {
+        Game(levelTwo,level,gameDifficulty)
+    }
+    if (level == 3) {
+        Game(levelThree,level,gameDifficulty)  
+    }
+    if (level == 4) {
+        Game(levelFour,level,gameDifficulty) 
+    }
+    if (level == 5) {
+        Game(levelFive,level,gameDifficulty)
+    }
+    if (level == 6) {
+        Game(levelSix,level,gameDifficulty)
+    }
+    
+}
 
 num.value=2;
 gameDifficulty = Object.keys(bestScore)[1];
 difficulty.innerHTML=`Difficulty :${gameDifficulty}`;
 bestTime.innerHTML =`Best Time : ${bestScore[gameDifficulty]}`;
 Game();
-
-function Game(levelName=levelTwo,levelNum=2,gameDifficulty=Object.keys(bestScore)[1]){
-    fillTiles(levelName);
-    counter(levelNum,gameDifficulty);
-    StartGame();
-}

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="memoryGame.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory Game</title>
@@ -19,13 +21,18 @@
                 <button type="button" id="btnStart">Play</button>
             </div>
         </div>
-       <div class="difficultyTime"> <h2 class="difficulty" id="difficulty"></h2><span class="bestTime" id="bestTime"></span></div>
-    <div id="timer">00:00</div>
+      <div class="gameText">
+        <div class="difficultyTime"> <h2 class="difficulty" id="difficulty"></h2><span class="bestTime" id="bestTime"></span></div>
+        <div id="timer">Time = 00:00</div>
+      </div>
     </div>
     <div class="container" id="con">
-       
     </div>
-    
+    <div class="GameOver hide" id="GameOver">
+        <!-- <i class="fa-solid fa-circle-xmark fa-lg"></i> -->
+       <div class="display"> <h1 class="title">Game Over</h1></div>
+      <div class="display">  <h3>Would you like to play again?</h3></div>
+      <div class="display">  <button type="button" id="playAgain">Press Play</button></div>
     </div>
 </body>
 <script src="node_modules/moment/moment.js" ></script>
