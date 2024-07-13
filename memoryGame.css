@@ -656,9 +656,9 @@ button[type=button]:active {
 
 @media only screen and (max-width: 450px) {
     .container{
-        padding: 5px;
+        padding: 4px;
         display: grid;
-        gap: 5px;
+        gap: 4px;
         grid-template-columns:repeat(4,1fr) ;
         background-color: rgb(0, 91, 127);
     }
@@ -703,7 +703,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:100 10px 'Caprasimo',serif;
+        font:800 10px 'Caprasimo',serif;
     }
 
     .title{
@@ -714,10 +714,11 @@ button[type=button]:active {
 }
 
 @media only screen and (max-width: 390px) {
+    
     .container{
-        padding: 2px;
+        padding: 1px;
         display: grid;
-        gap: 2px;
+        gap: 1px;
         grid-template-columns:repeat(4,1fr) ;
         background-color: rgb(0, 120, 74);
     }
@@ -761,11 +762,11 @@ button[type=button]:active {
     }
 
     .Game-Container{
-        padding: 5px 10px;
+        padding: 5px 5px;
     }
 
     .behind{
-        font:100 10px 'Caprasimo',serif;
+        font:800 10px 'Caprasimo',serif;
     }
 
     .title{
@@ -823,7 +824,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:100 10px 'Caprasimo',serif;
+        font:800 10px 'Caprasimo',serif;
     }
 
     .title{
@@ -882,7 +883,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:lighter 10px 'Caprasimo',serif;
+        font:800 10px 'Caprasimo',serif;
     }
 
     .title{
@@ -957,7 +958,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:100 12px 'Caprasimo',serif;
+        font:800 12px 'Caprasimo',serif;
     }
 
     .title{
@@ -1024,7 +1025,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:100 12px 'Caprasimo',serif;
+        font:800 12px 'Caprasimo',serif;
     }
 
     .title{
@@ -1085,7 +1086,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:100 12px 'Caprasimo',serif;
+        font:800 12px 'Caprasimo',serif;
     }
 
     .title{
@@ -1147,7 +1148,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:100 12px 'Caprasimo',serif;
+        font:800 12px 'Caprasimo',serif;
     }
 
     .title{
