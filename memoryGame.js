@@ -279,7 +279,7 @@ let colourRandomiser = (indices, colors) => {
     return randomisedColours;
 }
 
-let primaryColours = ["blue", "red", "yellow", "green", "brown", "white","purple","gray","grey"];
+let primaryColours = ["blue", "red", "yellow", "green", "brown", "white","purple","gray","grey","almond","chiffon","olive","aqua","pink"];
 let primaryColorChecker = (str="") => {
     let position;
     for (let index = 0; index < primaryColours.length; index++) {
@@ -292,42 +292,84 @@ let primaryColorChecker = (str="") => {
         
     return -1;
 }
-console.log(primaryColorChecker("paleblue"))
-let stringPanelFormatter = (str) => {
+
+let stringPanelFormatter = (str="") => {
     let result;
     let l="light";
     let d ="dark";
     let m ="medium";
-    let p ="pale"
-    let w="white"
+    let p ="pale";
+    let w="white";
+    let lavender = "lavender";
+    let olive = "olive";
+    let aqua = "aqua";
+    //let shadesAndOdds = ["light","dark","medium","pale"]
     let position;
-    if (primaryColorChecker(str)>0 && str.indexOf(d)!=0 && str.indexOf(l)!=0 && str.indexOf(m)!=0 &&  str.indexOf(p)!=0) {
-       position = primaryColorChecker(str);
-        result = stringPanelFormatter(str.substring(0, position)).padEnd(3) + "\n" + strUpperCase(str.substring(position, str.length));
-       
-        return result;
-    } else if (str.indexOf(d) == 0) {
-         position = str.indexOf(d);
+    if (primaryColorChecker(str)>0 &&
+        str.indexOf(d)!=0 && str.indexOf(l)!=0 &&
+        str.indexOf(m)!=0 &&  str.indexOf(p)!=0 &&
+        str.indexOf(aqua)!=0  &&  str.indexOf(olive)!=0 &&
+        str.indexOf(lavender)!=0) {
+        //if colour in list is further than 0 index and it does'nt contain variables above aswell at first index
+        position = primaryColorChecker(str);
 
-         return result = str.substring(position, d.length) + "\n" + /* stringPanelFormatter( */strUpperCase(str.substring(d.length, str.length))/* ) */;
-     } else if (str.indexOf(l) == 0 ) {
-         position = str.indexOf(l);
+        return result =  stringPanelFormatter(str.substring(0, position)) + "\n" +
+          strUpperCase(stringPanelFormatter(str.substring(position, str.length)));
+     } 
+     else if (str.indexOf(d) == 0) {//if dark is at position 0(is first) in the string
+         position = str.indexOf(d);//take positon
 
-         return result = str.substring(position, l.length) + "\n" + stringPanelFormatter(strUpperCase(str.substring(l.length, str.length)));
-     } else if (str.indexOf(m) == 0 ) {
-         position = str.indexOf(m);
-
-         return result = str.substring(position, m.length) + "\n" + strUpperCase(str.substring(m.length, str.length));
+         return result = str.substring(position, d.length) + "\n" +//return 'dark" appended with new line(\n)
+         strUpperCase(stringPanelFormatter(str.substring(d.length, str.length)));//check if string has formattable criteria
      }
-     else if (str.indexOf(p) == 0 ) {
-         position = str.indexOf(p);
+     else if (str.indexOf(aqua) == 0) {//if aqua is at position 0(is first) in the string
+        position = str.indexOf(aqua);//take positon
 
-         return result = str.substring(position, p.length) + "\n" + stringPanelFormatter(strUpperCase(str.substring(p.length, str.length)));
-    }else if (str.indexOf(w) == 0 ) {
-        position = str.indexOf(w);
+        return result = str.substring(position, aqua.length) + "\n" +
+        strUpperCase(stringPanelFormatter(str.substring(aqua.length, str.length)));
+    } 
+     else if (str.indexOf(l) == 0 ) {//if light is at position 0(is first) in the string
+         position = str.indexOf(l);//take positon
 
-        return result = str.substring(position, w.length) + "\n" + stringPanelFormatter(strUpperCase(str.substring(w.length, str.length)));
-   }
+         return result = str.substring(position, l.length) + "\n" +
+         strUpperCase(stringPanelFormatter(str.substring(l.length, str.length)));
+     } 
+     else if (str.indexOf(m) == 0 ) {//if medium is at position 0(is first) in the string
+         position = str.indexOf(m);//take positon
+
+         return result = str.substring(position, m.length) + "\n" +
+         strUpperCase(stringPanelFormatter(str.substring(m.length, str.length)));
+     }
+     else if (str.indexOf(p) == 0 ) {//if pale is at position 0(is first) in the string
+         position = str.indexOf(p);//take positon
+
+         return result = str.substring(position, p.length) + "\n" +
+         strUpperCase(stringPanelFormatter(str.substring(p.length, str.length)));
+    }
+    else if (str.indexOf(w) == 0 ) {//if white is at position 0(is first) in the string
+        position = str.indexOf(w);//take positon
+
+        return result = str.substring(position, w.length) + "\n" +
+        strUpperCase(stringPanelFormatter(str.substring(w.length, str.length)));
+   
+    }
+    else if (str.indexOf(lavender) == 0 ) {//if lavender is at position 0(is first) in the string
+        position = str.indexOf(lavender);//take positon
+
+        return result = str.substring(position, lavender.length) + "\n" +
+        strUpperCase(stringPanelFormatter(str.substring(lavender.length, str.length)));
+   
+    }
+    else if (str.indexOf(olive) == 0) {//if olive is at position 0(is first) in the string
+        position = str.indexOf(olive);//take positon
+        console.clear();
+        
+        console.log("found olive")
+        return result = str.substring(position, olive.length) + "\n" +
+        strUpperCase(stringPanelFormatter(str.substring(olive.length, str.length)));
+   
+    }
+    
 
     return str;
 }
@@ -432,7 +474,7 @@ let scoreSet = (d,score)=>{
     let t = score.split(":");
     
     Object.keys(bestScore).forEach((diff)=>{
-        let t2 = bestScore[diff].split(":");
+        let t2 = bestScore[diff].indexOf(":")>0? bestScore[diff].split(":") : "0";
        
         
         if(diff=d){
@@ -486,7 +528,7 @@ function counter(level,difficulty){
         }
     }
     x = setInterval(function timer() {
-        console.log("level",level,"minute",minute,"second",second)
+        
         if (second < 1) {
             if (minute > 0) {
                 minute--;
@@ -505,7 +547,9 @@ function counter(level,difficulty){
       
         let container = document.getElementById("con");
         if (document.querySelectorAll(".block.flip.matched").length == container.children.length) {
+            console.log("tiles matched ","score : ",time);
             scoreSet(difficulty,time);
+            console.log("scores", bestScore)
             clearInterval(x);
             bestTime.innerHTML =`<b>Best Time</b> : ${bestScore[difficulty]}`;
             counter(level,difficulty);
@@ -549,13 +593,13 @@ let gameDifficulty;
 
 
 function Game(levelName=levelTwo,levelNum=2,gameDifficulty=Object.keys(bestScore)[1]){
-    fillTiles(levelName);
-    counter(levelNum,gameDifficulty);
-    StartGame();
+    setTimeout(fillTiles(levelName),4000);
+    setTimeout(counter(levelNum,gameDifficulty),4000);
+    setTimeout(StartGame(),3000);
 }
 
 btnStart.onclick = () => {
-    clearInterval(x);
+
      bestTime.innerHTML =`<b>Best Time</b> : 00:00`;
      
     if (level == 1) {
@@ -563,14 +607,14 @@ btnStart.onclick = () => {
         gameDifficulty = Object.keys(bestScore)[0];
         difficulty.innerHTML=`<b>Difficulty</b>  : ${gameDifficulty}`;
         bestTime.innerHTML =`<b>Best Time</b> : ${bestScore[gameDifficulty]&&"00:00"}`;
-        setTimeout(Game(levelOne,level,gameDifficulty),1000);
+        setTimeout(Game(levelOne,level,gameDifficulty),2000);
     }
     if (level == 2) {
         
         gameDifficulty = Object.keys(bestScore)[1];
         difficulty.innerHTML=`<b>Difficulty</b>  : ${gameDifficulty}`;
         bestTime.innerHTML =`<b>Best Time</b> : ${bestScore[gameDifficulty]&&"00:00"}`;
-       setTimeout( Game(levelTwo,level,gameDifficulty),1000);
+       setTimeout( Game(levelTwo,level,gameDifficulty),2000);
     }
     if (level == 3) {
         

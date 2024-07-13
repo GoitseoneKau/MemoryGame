@@ -4,7 +4,7 @@
     font-family: Caprasimo;
     font-style: normal;
     font-weight: 400;
-    src:url('fonts/Caprasimo/Caprasimo-Regular.woff') format('woff')
+    src:url('Caprasimo/Caprasimo-Regular.woff') format('woff')
 }
 
 *{
@@ -126,7 +126,7 @@ button[type=button] {
     padding: 5px;
     width: 150px;
     height: 45px;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 12px;
     text-align: center;
     border: 1px solid chocolate;
@@ -184,7 +184,7 @@ button[type=button]:active {
     backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     border: 4px groove white;
-    font:900 15px 'Caprasimo',serif;
+    font:100 14px 'Caprasimo',serif;
     rotate: y 180deg;
 }
 
@@ -286,7 +286,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:1000 15px 'Caprasimo',serif;
+        font:100 13px 'Caprasimo',serif;
     }
 
     .title{
@@ -341,7 +341,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:1000 15px 'Caprasimo',serif;
+        font:100 13px 'Caprasimo',serif;
     }
 
     .title{
@@ -400,7 +400,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:900 14px 'Caprasimo',serif;
+        font:100 13px 'Caprasimo',serif;
     }
 
     .title{
@@ -459,7 +459,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:900 14px 'Caprasimo',serif;
+        font:100 13px 'Caprasimo',serif;
     }
 
     .title{
@@ -515,7 +515,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:900 13px 'Caprasimo',serif;
+        font:100 13px 'Caprasimo',serif;
     }
 
     .title{
@@ -574,7 +574,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:900 13px 'Caprasimo',serif;
+        font:100 13px 'Caprasimo',serif;
     }
 
     .title{
@@ -636,7 +636,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:900 12px 'Caprasimo',serif;
+        font:100 12px 'Caprasimo',serif;
     }
 
     .title{
@@ -703,7 +703,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:800 10px 'Caprasimo',serif;
+        font:100 10px 'Caprasimo',serif;
     }
 
     .title{
@@ -766,7 +766,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:800 10px 'Caprasimo',serif;
+        font:100 10px 'Caprasimo',serif;
     }
 
     .title{
@@ -824,7 +824,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:800 10px 'Caprasimo',serif;
+        font:100 10px 'Caprasimo',serif;
     }
 
     .title{
@@ -883,7 +883,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:800 10px 'Caprasimo',serif;
+        font:100 10px 'Caprasimo',serif;
     }
 
     .title{
@@ -948,6 +948,10 @@ button[type=button]:active {
         padding: 5px 0 ;
     }
 
+    .difficultyTime{
+        flex-direction: row;
+    }
+
     .fa-circle-xmark{
         color:rgb(82, 0, 176);
     }
@@ -958,7 +962,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:800 12px 'Caprasimo',serif;
+        font:100 12px 'Caprasimo',serif;
     }
 
     .title{
@@ -1002,7 +1006,9 @@ button[type=button]:active {
     .gameText{
         flex-direction: row;
     }
-
+    .difficultyTime{
+        flex-direction: row;
+    }
     .fa-circle-xmark{
         color:rgb(181, 3, 0);
     }
@@ -1025,7 +1031,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:800 12px 'Caprasimo',serif;
+        font:100 12px 'Caprasimo',serif;
     }
 
     .title{
@@ -1066,6 +1072,9 @@ button[type=button]:active {
     .gameText{
         flex-direction: row;
     }
+    .difficultyTime{
+        flex-direction: row;
+    }
     .fa-circle-xmark{
         color: rgb(71, 179, 0);
     }
@@ -1086,7 +1095,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:800 12px 'Caprasimo',serif;
+        font:100 12px 'Caprasimo',serif;
     }
 
     .title{
@@ -1128,6 +1137,9 @@ button[type=button]:active {
     .gameText{
         flex-direction: row;
     }
+    .difficultyTime{
+        flex-direction: row;
+    }
     .fa-circle-xmark{
         color: rgb(160, 0, 80);
     }
@@ -1148,7 +1160,7 @@ button[type=button]:active {
     }
 
     .behind{
-        font:800 12px 'Caprasimo',serif;
+        font:100 12px 'Caprasimo',serif;
     }
 
     .title{
