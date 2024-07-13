@@ -300,31 +300,31 @@ let stringPanelFormatter = (str) => {
     let m ="medium";
     let p ="pale"
     let w="white"
-  
+    let position;
     if (primaryColorChecker(str)>0 && str.indexOf(d)!=0 && str.indexOf(l)!=0 && str.indexOf(m)!=0 &&  str.indexOf(p)!=0) {
-       let position = primaryColorChecker(str);
+       position = primaryColorChecker(str);
         result = stringPanelFormatter(str.substring(0, position)).padEnd(3) + "\n" + strUpperCase(str.substring(position, str.length));
        
         return result;
     } else if (str.indexOf(d) == 0) {
-         let position = str.indexOf(d);
+         position = str.indexOf(d);
 
          return result = str.substring(position, d.length) + "\n" + /* stringPanelFormatter( */strUpperCase(str.substring(d.length, str.length))/* ) */;
      } else if (str.indexOf(l) == 0 ) {
-         let position = str.indexOf(l);
+         position = str.indexOf(l);
 
          return result = str.substring(position, l.length) + "\n" + stringPanelFormatter(strUpperCase(str.substring(l.length, str.length)));
      } else if (str.indexOf(m) == 0 ) {
-         let position = str.indexOf(m);
+         position = str.indexOf(m);
 
          return result = str.substring(position, m.length) + "\n" + strUpperCase(str.substring(m.length, str.length));
      }
      else if (str.indexOf(p) == 0 ) {
-         let position = str.indexOf(p);
+         position = str.indexOf(p);
 
          return result = str.substring(position, p.length) + "\n" + stringPanelFormatter(strUpperCase(str.substring(p.length, str.length)));
     }else if (str.indexOf(w) == 0 ) {
-        let position = str.indexOf(w);
+        position = str.indexOf(w);
 
         return result = str.substring(position, w.length) + "\n" + stringPanelFormatter(strUpperCase(str.substring(w.length, str.length)));
    }
@@ -343,13 +343,15 @@ let assignBackgroundColors = (el, index, randomColours) => {
     element.style.backgroundColor = c;
     element.innerText = strUpperCase(stringPanelFormatter(c));
 
-    if (c == 'black') {
+    if (c.indexOf("midnight")>=0 ||c.indexOf('dark') >= 0 || c.indexOf("navy") >= 0|| c=="blue"  || c.indexOf("black") == 0|| c.indexOf("indigo") == 0) {
         element.style.color = "white";
-    } else if (c.indexOf('dark') >= 0) {
-        element.style.color = "white";
-    } else if (c.indexOf("navy") >= 0) {
+    }else if(c.indexOf("medium")==0 &&c.indexOf('blue') > 0 || c.indexOf('rebecca')==0){
         element.style.color = "white";
     }
+    else{
+        element.style.color = "black";
+    }
+
 }
 
 
@@ -434,7 +436,7 @@ let scoreSet = (d,score)=>{
        
         
         if(diff=d){
-            if( bestScore[diff]=="0"){
+            if( bestScore[diff]=="0" || bestScore[diff]==score){
                 bestScore[diff] = score; 
             }
             else{
@@ -451,31 +453,31 @@ function counter(level,difficulty){
     let second =0;
     let minute = 0;
 
-if(level== 1){
-    second = 30;
-    minute = 0;
+    if(level== 1){
+        second = 30;
+        minute = 0;
 
-}
-if(level==2){
-    second = 40;
-        minute = 0
-}
-if(level==3){
-    second = 60;
-        minute = 0
-}
-if(level==4){
-    second = 30;
-    minute = 1
-}
-if(level==5){
-    second = 50;
-    minute = 1
-}
-if(level==6){
-    second = 0;
-    minute = 2
-}
+    }
+    if(level==2){
+        second = 40;
+            minute = 0
+    }
+    if(level==3){
+        second = 60;
+            minute = 0
+    }
+    if(level==4){
+        second = 30;
+        minute = 1
+    }
+    if(level==5){
+        second = 50;
+        minute = 1
+    }
+    if(level==6){
+        second = 0;
+        minute = 2
+    }
 
     if (second < 60) {
         if (minute > 1) {
@@ -506,9 +508,9 @@ if(level==6){
             scoreSet(difficulty,time);
             clearInterval(x);
             bestTime.innerHTML =`<b>Best Time</b> : ${bestScore[difficulty]}`;
-            timerElement.innerHTML =`<b>Time</b> = 00:00`;
             counter(level,difficulty);
-        } else if (minute == 0 && second == 0) {
+        }
+        if (minute == 0 && second == 0) {
             clearInterval(x);
             document.getElementById("GameOver").classList.remove("hide");
         }
@@ -551,6 +553,7 @@ function Game(levelName=levelTwo,levelNum=2,gameDifficulty=Object.keys(bestScore
     counter(levelNum,gameDifficulty);
     StartGame();
 }
+
 btnStart.onclick = () => {
     clearInterval(x);
      bestTime.innerHTML =`<b>Best Time</b> : 00:00`;
@@ -625,6 +628,7 @@ btnPlayAgain.onclick = ()=>{
 }
 
 num.value=2;
+level=num.value;
 gameDifficulty = Object.keys(bestScore)[1];
 difficulty.innerHTML=`<b>Difficulty</b> : ${gameDifficulty}`;
 bestTime.innerHTML =`<b>Best Time</b> : ${bestScore[gameDifficulty]}`;
